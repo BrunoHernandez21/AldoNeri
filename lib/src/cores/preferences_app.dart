@@ -1,4 +1,5 @@
 import 'package:aldo_neri/src/cores/repository.dart';
+import 'package:aldo_neri/src/helpers/variables_globales.dart';
 import 'package:flutter/material.dart';
 
 class PreferencesApp {
@@ -38,15 +39,20 @@ class PreferencesApp {
     final int selector = await Repository.loadInt('theme') ?? 0;
     if (selector == 1) {
       ThemeData myTheme = ThemeData.dark().copyWith(
+        backgroundColor: Colores.background,
         appBarTheme: ThemeData.dark().appBarTheme.copyWith(
-              backgroundColor: Colors.grey.shade900,
+              backgroundColor: Colors.transparent,
+              elevation: 0,
             ),
       );
       return myTheme;
     } else {
       ThemeData myTheme = ThemeData.light().copyWith(
+          backgroundColor: Colores.background,
           appBarTheme: ThemeData.light().appBarTheme.copyWith(
-              backgroundColor: const Color.fromARGB(255, 10, 162, 150)));
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+              ));
       return myTheme;
     }
   }

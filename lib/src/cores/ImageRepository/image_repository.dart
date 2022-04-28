@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/acount/acount_bloc.dart';
-import '../../helpers/globals.dart';
+import '../../helpers/variables_globales.dart';
 import '../../services/cloud_service.dart';
 import '../repository.dart';
 

@@ -74,12 +74,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/appUtils/
-    - assets/svg/IconosGenerales/
-    - assets/svg/login/
-    - assets/svg/utility/
-    - assets/svg/state/
-    
-    
+    - assets/svg/imagenes/
+    - assets/svg/logos/
+    - assets/background/
+    - assets/logo/
 
   fonts:
     - family: Roboto
@@ -110,6 +108,9 @@ flutter:
           weight: 500
         - asset: assets/fonts/Merriweather/Merriweather-Italic.ttf
           style: italic
+    - family:  NewIcons
+      fonts:
+        - asset: assets/icons/fonts/NewIcons.ttf
 
 flutter_intl:
   enabled: true
@@ -120,3 +121,6 @@ flutter_intl:
 #svg atributes 
 # https://undraw.co/search
 # https://www.svgbackgrounds.com/
+
+#New Icons
+# https://www.fluttericon.com/

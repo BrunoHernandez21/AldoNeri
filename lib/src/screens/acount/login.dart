@@ -1,11 +1,152 @@
+import 'package:aldo_neri/src/screens/acount/recovery.dart';
+import 'package:aldo_neri/src/screens/acount/register.dart';
 import 'package:flutter/material.dart';
 
+import '../../helpers/variables_globales.dart';
+import '../../widgets/botones.dart';
+import '../../widgets/inputs_text.dart';
+import '../../widgets/text.dart';
+import '../admin/admin.dart';
+
 class Login extends StatelessWidget {
-  static const routeName = 'root/login';
+  static const routeName = '/login';
   const Login({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    Medidas.size = MediaQuery.of(context).size;
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        foregroundColor: Colors.black,
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12.0,
+            ),
+            child: Column(
+              children: [
+                Image.asset(
+                  Assets.logo2,
+                  height: Medidas.size.height * .2,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Textos.tituloNaranja(
+                    texto: "Inicia Sesión",
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5, bottom: 20),
+                  child: Textos.tituloGrey(
+                    texto: "Entra a tu cuenta de Aldo Neri",
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: InputsText.box(
+                      hintText: 'Tu correo',
+                      textType: TextInputType.emailAddress,
+                      icon: const Icon(Icons.mail_outline)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: InputsText.box(
+                    hintText: 'Tu contraseña',
+                    textType: TextInputType.visiblePassword,
+                    obscure: true,
+                    icon: const Icon(Icons.lock),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Checkbox(value: false, onChanged: (a) {}),
+                      Textos.parrafoGrey(texto: 'Recuerdame'),
+                      const Expanded(child: SizedBox()),
+                      Textos.parrafoHiper(
+                        texto: '',
+                        hipertext: '¿Olvidaste tu contraseña?',
+                        onTap: () {
+                          Navigator.of(context).pushNamed(Recovery.routeName);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Botones.degradedTextButtonOrange(
+                  text: 'Inicia Sesión',
+                  onTap: () async {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        Admin.routeName, (route) => false);
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    children: [
+                      const Expanded(
+                        child: Divider(
+                          color: Colors.grey,
+                          height: 20,
+                          indent: 10,
+                          endIndent: 10,
+                        ),
+                      ),
+                      Textos.parrafoGrey(texto: 'O Continúa con'),
+                      const Expanded(
+                        child: Divider(
+                          color: Colors.grey,
+                          height: 20,
+                          indent: 10,
+                          endIndent: 10,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Botones.solidnWhitSvg(
+                          titulo: 'Google',
+                          svgAsset: Assets.svgGoogle,
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          }),
+                      Botones.solidnWhitSvg(
+                          titulo: 'Facebook',
+                          svgAsset: Assets.svgFacebook,
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          }),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Textos.parrafoHiper(
+                    texto: '¿No tienes cuenta?  ',
+                    hipertext: 'Registrate',
+                    fontSize: 16,
+                    fontHiperSize: 18,
+                    onTap: () {
+                      Navigator.of(context).pushNamed(Register.routeName);
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

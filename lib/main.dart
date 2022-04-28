@@ -4,7 +4,7 @@ import 'package:aldo_neri/src/cores/acount.dart';
 import 'package:aldo_neri/src/cores/preferences_app.dart';
 import 'package:aldo_neri/src/helpers/ruts_screens.dart';
 import 'package:aldo_neri/src/models/acount.dart';
-import 'package:aldo_neri/src/screens/acount/home.dart';
+import 'package:aldo_neri/src/screens/acount/root.dart';
 import 'package:aldo_neri/src/screens/admin/admin.dart';
 import 'package:flutter/services.dart';
 
@@ -92,7 +92,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       locale: locale,
       routes: Ruts.rutas,
-      initialRoute: isLogin ? Admin.routeName : Home.routeName,
+      initialRoute: isLogin ? Admin.routeName : RootPage.routeName,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

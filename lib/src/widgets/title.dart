@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/globals.dart';
+import '../helpers/variables_globales.dart';
 
 class TitleLess extends StatelessWidget {
   final String title;

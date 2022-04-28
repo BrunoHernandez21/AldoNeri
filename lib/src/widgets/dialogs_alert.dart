@@ -89,14 +89,14 @@ class DialogAlert {
             Row(
               children: [
                 TextButton(
-                  child: Text(AppLocalisations.of(context).cancelar),
+                  child: Text(AppLocalisations.of(context).ok),
                   onPressed: () {
                     Navigator.of(context).pop(false);
                   },
                 ),
                 const Expanded(child: SizedBox()),
                 TextButton(
-                  child: Text(AppLocalisations.of(context).aceptar),
+                  child: Text(AppLocalisations.of(context).ok),
                   onPressed: () {
                     Navigator.of(context).pop(true);
                   },
