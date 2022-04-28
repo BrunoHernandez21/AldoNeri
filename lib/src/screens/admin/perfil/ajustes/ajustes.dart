@@ -1,3 +1,6 @@
+import 'package:aldo_neri/src/screens/admin/perfil/ajustes/billetera.dart';
+import 'package:aldo_neri/src/screens/admin/perfil/ajustes/direccion.dart';
+import 'package:aldo_neri/src/screens/admin/perfil/ajustes/new_password.dart';
 import 'package:aldo_neri/src/widgets/bacground.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +33,9 @@ class Ajustes extends StatelessWidget {
                     Icons.arrow_forward_ios_sharp,
                     size: 17,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).pushNamed(NewPassword.routeName);
+                  },
                 ),
                 const Divider(color: Colors.grey, height: 10),
                 ListTile(
@@ -39,7 +44,9 @@ class Ajustes extends StatelessWidget {
                     Icons.arrow_forward_ios_sharp,
                     size: 17,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).pushNamed(Billetera.routeName);
+                  },
                 ),
                 const Divider(color: Colors.grey, height: 10),
                 ListTile(
@@ -48,7 +55,9 @@ class Ajustes extends StatelessWidget {
                     Icons.arrow_forward_ios_sharp,
                     size: 17,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).pushNamed(Direccion.routeName);
+                  },
                 ),
                 const Divider(color: Colors.grey, height: 10),
               ],

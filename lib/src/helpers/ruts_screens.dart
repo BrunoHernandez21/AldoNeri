@@ -1,5 +1,7 @@
 import 'package:aldo_neri/src/screens/acount/recovery_verificacion.dart';
 import 'package:aldo_neri/src/screens/admin/admin.dart';
+import 'package:aldo_neri/src/screens/admin/perfil/ajustes/billetera.dart';
+import 'package:aldo_neri/src/screens/admin/perfil/ajustes/direccion.dart';
 import 'package:aldo_neri/src/screens/admin/perfil/ajustes/new_password.dart';
 import 'package:aldo_neri/src/screens/admin/perfil/ayuda.dart';
 import 'package:aldo_neri/src/screens/admin/perfil/editar_perfil.dart';
@@ -35,6 +37,8 @@ class Ruts {
     InformacionLegal.routeName: (_) => const InformacionLegal(),
     Curso.routeName: (_) => const Curso(),
     SubLecciones.routeName: (_) => const SubLecciones(),
+    Direccion.routeName: (_) => const Direccion(),
+    Billetera.routeName: (_) => const Billetera(),
   };
 
   static get rutas {
