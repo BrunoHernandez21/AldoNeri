@@ -19,8 +19,6 @@ class AcountBloc extends Bloc<AcountEvent, AcountState> {
         emit(AcountState(acount: event.acount, isLogin: true)));
     on<OnLogout>((event, emit) =>
         emit(AcountState(acount: event.acount, isLogin: false)));
-    on<OnEditalbe>(
-        (event, emit) => emit(state.copyWith(editable: event.editable)));
     on<OnUpdateAcount>(
         (event, emit) => emit(state.copyWith(acount: state.acount)));
   }

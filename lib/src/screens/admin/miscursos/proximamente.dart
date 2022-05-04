@@ -68,7 +68,7 @@ class _Tarjeta extends StatelessWidget {
                 SizedBox(
                     width: Medidas.size.width * .60,
                     child:
-                        Textos.tituloNaranja(texto: 'Encuentro Terapeutico')),
+                        Textos.parrafoNaranja(texto: 'Encuentro Terapeutico')),
               ],
             ),
             Padding(

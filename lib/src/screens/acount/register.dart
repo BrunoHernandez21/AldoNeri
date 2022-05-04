@@ -1,3 +1,4 @@
+import 'package:aldo_neri/src/cores/compositor.dart';
 import 'package:aldo_neri/src/screens/acount/register_confirm.dart';
 import 'package:aldo_neri/src/widgets/botones.dart';
 import 'package:aldo_neri/src/widgets/inputs_text.dart';
@@ -8,8 +9,12 @@ import '../../widgets/text.dart';
 
 class Register extends StatelessWidget {
   static const routeName = '/register';
+  final TextEditingController nombre = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController fecha = TextEditingController();
+  final TextEditingController telefono = TextEditingController();
 
-  const Register({Key? key}) : super(key: key);
+  Register({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,18 +54,21 @@ class Register extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: InputsText.classic(
+                        controller: nombre,
                         hintText: "Nombre y Apellido",
                         textType: TextInputType.name),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: InputsText.classic(
+                        controller: fecha,
                         hintText: "Fecha de Nacimiento",
                         textType: TextInputType.datetime),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: InputsText.box(
+                        controller: email,
                         hintText: 'Correo Eléctronico',
                         textType: TextInputType.emailAddress,
                         icon: const Icon(Icons.mail_outline)),
@@ -68,6 +76,7 @@ class Register extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: InputsText.box(
+                        controller: telefono,
                         hintText: 'Telefono',
                         textType: TextInputType.phone,
                         icon: const Icon(Icons.phone_outlined)),
@@ -86,6 +95,13 @@ class Register extends StatelessWidget {
                   Botones.degradedTextButtonOrange(
                     text: 'Registrate',
                     onTap: () {
+                      Compositor.onRegister(
+                        context: context,
+                        email: email.text,
+                        lastname: '',
+                        name: nombre.text,
+                        password: telefono.text,
+                      );
                       Navigator.of(context)
                           .pushNamed(RegisterConfirm.routeName);
                     },

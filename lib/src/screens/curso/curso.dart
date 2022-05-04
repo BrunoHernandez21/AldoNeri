@@ -8,13 +8,13 @@ import 'recursos.dart';
 
 class Curso extends StatelessWidget {
   static const routeName = 'cursosL';
-  const Curso({Key? key}) : super(key: key);
-
+  Curso({Key? key}) : super(key: key);
+  bool isBuy = false;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       initialIndex: 0,
-      length: 3,
+      length: isBuy ? 3 : 2,
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -61,7 +61,7 @@ class Curso extends StatelessWidget {
         body: BackGrounds.burbujas(
           child: SafeArea(
             child: Column(
-              children: const [
+              children: [
                 SizedBox(
                   height: 55,
                   width: double.infinity,
@@ -70,16 +70,17 @@ class Curso extends StatelessWidget {
                     unselectedLabelColor: Colors.grey,
                     indicatorColor: Colors.orange,
                     tabs: <Widget>[
-                      Tab(
+                      const Tab(
                         text: 'Descripcion',
                       ),
-                      Tab(
+                      const Tab(
                         height: 55,
                         text: 'Lecciones',
                       ),
-                      Tab(
-                        text: 'Recursos',
-                      ),
+                      if (isBuy)
+                        const Tab(
+                          text: 'Recursos',
+                        ),
                     ],
                   ),
                 ),
@@ -87,9 +88,9 @@ class Curso extends StatelessWidget {
                   child: TabBarView(
                     physics: BouncingScrollPhysics(),
                     children: <Widget>[
-                      Descripcion(),
-                      Lecciones(),
-                      Recursos(),
+                      const Descripcion(),
+                      const Lecciones(),
+                      if (isBuy) const Recursos(),
                     ],
                   ),
                 ),

@@ -75,7 +75,6 @@ class Botones {
         ),
         onTap: onTap,
         border: false,
-        fontColor: Colors.white,
         borderColor: const Color(0xFFFA8046),
         colors: const [Color(0xFFFA8046), Color(0xFFF7A742)],
         maxSize: Medidas.size.height * .08,
@@ -92,9 +91,26 @@ class Botones {
         body: body,
         onTap: onTap,
         border: false,
-        fontColor: Colors.white,
         borderColor: const Color(0xFFFA8046),
         colors: const [Color(0xFFFA8046), Color(0xFFF7A742)],
+        maxSize: height ?? Medidas.size.height * .08,
+        minSize: height ?? Medidas.size.height * .06,
+      );
+
+  ///////////////////////////////////////////
+  static Widget degradedButton({
+    required Widget body,
+    required void Function() onTap,
+    required List<Color> colors,
+    Color borderColor = const Color(0xFFFA8046),
+    double? height,
+  }) =>
+      _Degradado(
+        body: body,
+        onTap: onTap,
+        border: false,
+        borderColor: borderColor,
+        colors: colors,
         maxSize: height ?? Medidas.size.height * .08,
         minSize: height ?? Medidas.size.height * .06,
       );
@@ -152,7 +168,6 @@ class _Degradado extends StatelessWidget {
   final Widget body;
   final void Function() onTap;
   final bool border;
-  final Color fontColor;
   final Color borderColor;
   final List<Color> colors;
   final double minSize;
@@ -163,7 +178,6 @@ class _Degradado extends StatelessWidget {
     required this.minSize,
     required this.maxSize,
     required this.border,
-    required this.fontColor,
     required this.borderColor,
     required this.colors,
     Key? key,

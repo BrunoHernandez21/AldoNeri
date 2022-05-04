@@ -42,3 +42,7 @@ class Assets {
 class Medidas {
   static Size size = const Size(0, 0);
 }
+
+class URL {
+  static const String base = "https://cursos.grupodime.com.mx/api/";
+}

@@ -4,6 +4,7 @@ import 'package:aldo_neri/src/widgets/inputs_text.dart';
 import 'package:aldo_neri/src/widgets/text.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../helpers/new_icons.dart';
 import 'tarjeta.dart';
 
 class Detalles extends StatelessWidget {
@@ -46,7 +47,7 @@ class Detalles extends StatelessWidget {
                   alignment: Alignment.center,
                   child: GestureDetector(
                     child:
-                        const Icon(Icons.delete, color: Colors.white, size: 30),
+                        const Icon(Icons.delete, color: Colors.white, size: 25),
                     onTap: () {},
                   ),
                 )
@@ -87,7 +88,11 @@ class Detalles extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
             child: _Info(),
           ),
-          Botones.degradedTextButtonOrange(text: 'Check out', onTap: () {}),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Botones.degradedTextButtonOrange(
+                text: 'Check out', onTap: () {}),
+          ),
         ],
       ),
     );
@@ -105,7 +110,7 @@ class _Info extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Textos.tituloGrey(texto: 'Subtotoal'),
+            Textos.tituloGrey(texto: 'Subtotal'),
             Textos.tituloGrey(texto: '\$3000'),
           ],
         ),

@@ -22,10 +22,10 @@ import '../screens/curso/subleccion/leccion.dart';
 class Ruts {
   static final Map<String, WidgetBuilder> _rutas = {
     RootPage.routeName: (_) => const RootPage(),
-    Login.routeName: (_) => const Login(),
+    Login.routeName: (_) => Login(),
     Recovery.routeName: (_) => const Recovery(),
     RecoveryVerificacion.routeName: (_) => const RecoveryVerificacion(),
-    Register.routeName: (_) => const Register(),
+    Register.routeName: (_) => Register(),
     Admin.routeName: (_) => const Admin(),
     NewPassword.routeName: (_) => const NewPassword(),
     RegisterConfirm.routeName: (_) => const RegisterConfirm(),
@@ -35,7 +35,7 @@ class Ruts {
     EditarPerfil.routeName: (_) => const EditarPerfil(),
     Ayuda.routeName: (_) => const Ayuda(),
     InformacionLegal.routeName: (_) => const InformacionLegal(),
-    Curso.routeName: (_) => const Curso(),
+    Curso.routeName: (_) => Curso(),
     SubLecciones.routeName: (_) => const SubLecciones(),
     Direccion.routeName: (_) => const Direccion(),
     Billetera.routeName: (_) => const Billetera(),

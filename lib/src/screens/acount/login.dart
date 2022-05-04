@@ -1,16 +1,22 @@
+import 'package:aldo_neri/src/cores/compositor.dart';
 import 'package:aldo_neri/src/screens/acount/recovery.dart';
 import 'package:aldo_neri/src/screens/acount/register.dart';
 import 'package:flutter/material.dart';
 
+import '../../bloc/acount/acount_temp.dart';
 import '../../helpers/variables_globales.dart';
 import '../../widgets/botones.dart';
+import '../../widgets/checBox.dart';
 import '../../widgets/inputs_text.dart';
 import '../../widgets/text.dart';
 import '../admin/admin.dart';
 
 class Login extends StatelessWidget {
   static const routeName = '/login';
-  const Login({Key? key}) : super(key: key);
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+
+  Login({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +69,13 @@ class Login extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Checkbox(value: false, onChanged: (a) {}),
-                      Textos.parrafoGrey(texto: 'Recuerdame'),
+                  child: MyCheckBoxTitle(
+                    title: Textos.parrafoGrey(texto: 'Recuerdame'),
+                    value: AcountTemps.recuerdame,
+                    onChnange: (a) {
+                      AcountTemps.recuerdame = a;
+                    },
+                    leading: Row(children: [
                       const Expanded(child: SizedBox()),
                       Textos.parrafoHiper(
                         texto: '',
@@ -76,14 +84,17 @@ class Login extends StatelessWidget {
                           Navigator.of(context).pushNamed(Recovery.routeName);
                         },
                       ),
-                    ],
+                    ]),
                   ),
                 ),
                 Botones.degradedTextButtonOrange(
                   text: 'Inicia Sesión',
                   onTap: () async {
+                    await Compositor.onLogin(
+                        context, email.text, password.text);
+                    /*
                     Navigator.of(context).pushNamedAndRemoveUntil(
-                        Admin.routeName, (route) => false);
+                        Admin.routeName, (route) => false); */
                   },
                 ),
                 Padding(

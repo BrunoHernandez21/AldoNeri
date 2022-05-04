@@ -65,18 +65,18 @@ class _Tarjeta extends StatelessWidget {
                         children: [
                           SizedBox(
                             width: Medidas.size.width * .55,
-                            child: Textos.tituloNaranja(
+                            child: Textos.parrafoNaranja(
                                 texto: 'Encuentro Terapeutico'),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: const [
-                              Icon(Icons.star, color: Colors.orange),
-                              Icon(Icons.star, color: Colors.orange),
-                              Icon(Icons.star, color: Colors.orange),
-                              Icon(Icons.star, color: Colors.orange),
-                              Icon(Icons.star, color: Colors.orange),
+                              Icon(Icons.star, color: Colors.orange, size: 15),
+                              Icon(Icons.star, color: Colors.orange, size: 15),
+                              Icon(Icons.star, color: Colors.orange, size: 15),
+                              Icon(Icons.star, color: Colors.orange, size: 15),
+                              Icon(Icons.star, color: Colors.orange, size: 15),
                             ],
                           )
                         ],
