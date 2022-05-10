@@ -4,7 +4,8 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 
 import '../helpers/variables_globales.dart';
-import '../models/acount.dart';
+import '../models/acoun_response.dart';
+import '../models/login_response.dart';
 
 class AcountServices {
   static const String _register = URL.base + 'signup';
@@ -15,7 +16,7 @@ class AcountServices {
   static const String _updatePassword = URL.base + "update_password";
   static const String _forgotPassword = URL.base + "forgot_password";
 
-  static Future<UsuarioPrivate?> login({
+  static Future<LoginResponse?> login({
     required String email,
     required String password,
   }) async {
@@ -29,14 +30,7 @@ class AcountServices {
           "password": password,
         },
       );
-      print(resp.body);
-      return UsuarioPrivate(usuario: Usuario());
-      final tempResp = json.decode(resp.body);
-      if (tempResp["ok"] == true) {
-        return UsuarioPrivate.fromMap(tempResp);
-      } else {
-        return null;
-      }
+      return LoginResponse.fromJson(resp.body);
     } catch (e) {
       return null;
     }
@@ -64,12 +58,6 @@ class AcountServices {
       );
       print(resp.body);
       return false;
-      final tempResp = json.decode(resp.body);
-      if (tempResp["ok"] == true) {
-        return false;
-      } else {
-        return false;
-      }
     } catch (e) {
       return false;
     }
@@ -86,22 +74,20 @@ class AcountServices {
     return;
   }
 
-  static void save(Usuario user, String token) async {}
-
-  Future<void> getUserInfo(String token) async {
+  static Future<void> getUserInfo({required String token}) async {
     try {
-      final response = await http.get(Uri.parse(_userdata), headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "auth_token": token,
-      });
-      final responseData = json.decode(response.body);
-      print(responseData);
+      final response = await http.get(
+        Uri.parse("$_userdata?auth_token=$token"),
+      );
+      final responseData = AcountResponse.fromJson(response.body);
+      print(responseData.toJson());
     } catch (error) {
-      rethrow;
+      return;
     }
   }
 
-  Future<void> userImageUpload(File image, String token) async {
+  static Future<void> userImageUpload(
+      {required File image, required String token}) async {
     var url = _uploadUserImage;
     var uri = Uri.parse(url);
     var request = http.MultipartRequest('POST', uri);
@@ -130,27 +116,30 @@ class AcountServices {
     }
   }
 
-  Future<void> logout() async {}
+  static Future<void> logout() async {}
 
-  Future<void> updateUserData(Usuario user, String token) async {
-    const url = _updateUserdata;
-
+  static Future<void> updateUserData({
+    required AcountResponse user,
+    required String token,
+  }) async {
     try {
       final response = await http.post(
-        Uri.parse(url),
+        Uri.parse(_updateUserdata),
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
         body: {
-          'auth_token': token,
-          'first_name': '',
-          'last_name': '',
-          'email': user.email,
-          'biography': '',
-          'twitter_link': '',
-          'facebook_link': '',
-          'linkedin_link': '',
+          "auth_token": token,
+          "first_name": "Bruno",
+          "last_name": "Hernandez",
+          "email": user.email,
+          "biography": "",
+          "twitter_link": "",
+          "facebook_link": "",
+          "linkedin_link": ""
         },
       );
 
       final responseData = json.decode(response.body);
+      print(responseData);
       if (responseData['status'] == 'failed') {
         throw const HttpException('Update Failed');
       }
@@ -159,27 +148,25 @@ class AcountServices {
     }
   }
 
-  Future<void> updateUserPassword(
-    String currentPassword,
-    String newPassword,
-    String token,
-  ) async {
-    const url = _updatePassword;
+  static Future<void> updateUserPassword({
+    required String currentPassword,
+    required String newPassword,
+    required String token,
+  }) async {
     try {
       final response = await http.post(
-        Uri.parse(url),
+        Uri.parse(_updatePassword),
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
         body: {
-          'auth_token': token,
-          'current_password': currentPassword,
-          'new_password': newPassword,
-          'confirm_password': newPassword,
+          "auth_token": token,
+          "current_password": currentPassword,
+          "new_password": newPassword,
+          "confirm_password": newPassword,
         },
       );
 
       final responseData = json.decode(response.body);
-      if (responseData['status'] == 'failed') {
-        throw const HttpException('Password update Failed');
-      }
+      print(responseData);
     } catch (error) {
       rethrow;
     }

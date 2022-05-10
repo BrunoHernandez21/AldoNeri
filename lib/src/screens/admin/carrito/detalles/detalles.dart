@@ -4,7 +4,6 @@ import 'package:aldo_neri/src/widgets/inputs_text.dart';
 import 'package:aldo_neri/src/widgets/text.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../helpers/new_icons.dart';
 import 'tarjeta.dart';
 
 class Detalles extends StatelessWidget {

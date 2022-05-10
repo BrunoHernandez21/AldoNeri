@@ -27,8 +27,8 @@ class Descripcion extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: Card(
               child: Column(
-                children: [
-                  _infoComrpa(),
+                children: const [
+                  _InfoComrpa(),
                   _Iterable(
                     titulo: 'Sobre el curso',
                     parrafo:
@@ -170,8 +170,8 @@ class _Valoracion extends StatelessWidget {
   }
 }
 
-class _infoComrpa extends StatelessWidget {
-  const _infoComrpa({Key? key}) : super(key: key);
+class _InfoComrpa extends StatelessWidget {
+  const _InfoComrpa({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,15 +1,11 @@
-import 'package:aldo_neri/src/widgets/text.dart';
 import 'package:flutter/material.dart';
-
-import '../bloc/acount/acount_temp.dart';
-import '../screens/acount/recovery.dart';
 
 class MyCheckBoxTitle extends StatefulWidget {
   final bool value;
   final void Function(bool) onChnange;
   final Widget title;
   final Widget? leading;
-  MyCheckBoxTitle(
+  const MyCheckBoxTitle(
       {required this.value,
       required this.onChnange,
       required this.title,
@@ -42,7 +38,7 @@ class _MyCheckBoxTitleState extends State<MyCheckBoxTitle> {
             }),
         widget.title,
         Flexible(
-          child: widget.leading ?? SizedBox(),
+          child: widget.leading ?? const SizedBox(),
         )
       ],
     );

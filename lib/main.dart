@@ -3,7 +3,7 @@ import 'package:aldo_neri/src/bloc/shaderPreferences/shaderpreferences_bloc.dart
 import 'package:aldo_neri/src/cores/acount.dart';
 import 'package:aldo_neri/src/cores/preferences_app.dart';
 import 'package:aldo_neri/src/helpers/ruts_screens.dart';
-import 'package:aldo_neri/src/models/acount.dart';
+import 'package:aldo_neri/src/models/login_response.dart';
 import 'package:aldo_neri/src/screens/acount/root.dart';
 import 'package:aldo_neri/src/screens/admin/admin.dart';
 import 'package:flutter/services.dart';
@@ -22,7 +22,7 @@ void main() async {
 
   final theme = await PreferencesApp.theme;
   final locale = await PreferencesApp.locale;
-  final acount = await AcountLocalSave.acount;
+  final acount = await AcountLocalSave.loadLoginResponse();
   final isLogin = await AcountLocalSave.isLogin;
 
   SystemChrome.setPreferredOrientations(
@@ -39,7 +39,7 @@ void main() async {
 class Appstate extends StatelessWidget {
   final Locale locale;
   final ThemeData theme;
-  final UsuarioPrivate acount;
+  final LoginResponse acount;
   final bool isLogin;
 
   const Appstate(

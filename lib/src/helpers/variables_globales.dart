@@ -46,3 +46,7 @@ class Medidas {
 class URL {
   static const String base = "https://cursos.grupodime.com.mx/api/";
 }
+
+class BaseDeDatos {
+  static const loginResponse = "loginResponse";
+}

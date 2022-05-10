@@ -1,27 +1,21 @@
 import 'package:aldo_neri/src/cores/repository.dart';
 
-import '../models/acount.dart';
+import '../helpers/variables_globales.dart';
+import '../models/login_response.dart';
 
 class AcountLocalSave {
   /////////////////user/////////////////////////////////////////////////
 
-  static Future<void> saveAcount({
-    required UsuarioPrivate acount,
+  static Future<void> saveLoginResponse({
+    required LoginResponse acount,
   }) async {
-    Repository.saveString("Usuario", acount.usuario.toJson());
-    Repository.saveString("token", acount.token);
-    Repository.saveBool("ok", acount.ok);
+    Repository.saveString(BaseDeDatos.loginResponse, acount.toJson());
   }
 
-  static Future<UsuarioPrivate> get acount async {
-    UsuarioPrivate temp = UsuarioPrivate(
-      ok: await Repository.loadBool("ok") ?? false,
-      token: await Repository.loadString("token") ?? "",
-      usuario: Usuario.fromJson(await Repository.loadString("Usuario") ?? "{}"),
-    );
-
-    return temp;
-  }
+  static Future<LoginResponse> loadLoginResponse() async =>
+      LoginResponse.fromJson(
+        await Repository.loadString(BaseDeDatos.loginResponse) ?? "{}",
+      );
 
   /////////////////LOGIN/////////////////////////////////////////////////
 

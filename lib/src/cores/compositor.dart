@@ -3,20 +3,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Compositor {
-  static Future<void> onInitApp(BuildContext context) async {}
+  ///////////////////////////////////////////////
+  ///Sistem Controller
+  static Future<bool> onInitApp(BuildContext context) async {
+    return true;
+  }
 
-  static Future<void> onCloseApp(BuildContext context) async {}
+  static Future<bool> onCloseApp(BuildContext context) async {
+    return true;
+  }
 
-  static Future<void> onSuspendApp(BuildContext context) async {}
+  static Future<bool> onSuspendApp(BuildContext context) async {
+    return true;
+  }
 
-  static Future<void> onRenuvaSecion(BuildContext context) async {}
-
-  static Future<void> onBuy(BuildContext context) async {}
-
-  static Future<void> onLogin(
+  ///////////////////////////////////////////////
+  ///Acount Controller
+  static Future<bool> onLogin(
       BuildContext context, String email, String password) async {
     final acountB = BlocProvider.of<AcountBloc>(context);
     await acountB.login(email, password, context);
+    return true;
   }
 
   static void onRegister({
@@ -36,5 +43,21 @@ class Compositor {
     );
   }
 
-  static void onLogOut(BuildContext context) async {}
+  static Future<bool> onLogOut(BuildContext context) async {
+    return true;
+  }
+
+  ///////////////////////////////////////////////
+  ///Buy Controller
+  static Future<bool> onRenuvaSecion(BuildContext context) async {
+    return true;
+  }
+
+  static Future<bool> onBuy(BuildContext context) async {
+    return true;
+  }
+
+  ///////////////////////////////////////////////
+  ///Cursos Controller
+
 }

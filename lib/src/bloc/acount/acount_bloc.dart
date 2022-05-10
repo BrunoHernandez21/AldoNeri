@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../../cores/acount.dart';
-import '../../models/acount.dart';
+import '../../models/login_response.dart';
 import '../../services/acount_services.dart';
 import '../../widgets/dialogs_alert.dart';
 
@@ -10,7 +10,7 @@ part 'acount_event.dart';
 part 'acount_state.dart';
 
 class AcountBloc extends Bloc<AcountEvent, AcountState> {
-  AcountBloc({required UsuarioPrivate acount, required bool isLogin})
+  AcountBloc({required LoginResponse acount, required bool isLogin})
       : super(AcountState(
           acount: acount,
           isLogin: isLogin,
@@ -24,7 +24,7 @@ class AcountBloc extends Bloc<AcountEvent, AcountState> {
   }
 
   ////////////////////////////////////////////////////logearse
-  Future<UsuarioPrivate?> login(
+  Future<bool?> login(
       String email, String password, BuildContext context) async {
     showDialog(
       context: context,
@@ -35,21 +35,25 @@ class AcountBloc extends Bloc<AcountEvent, AcountState> {
       email: email.trim(),
       password: password.trim(),
     );
+
     Navigator.of(context).pop();
     if (acount != null) {
       add(OnLogin(acount: acount, isLogin: true));
       AcountLocalSave.saveisLogin(true);
-      AcountLocalSave.saveAcount(acount: acount);
+      AcountLocalSave.saveLoginResponse(acount: acount);
+    } else {
+      return false;
     }
-    return acount;
+    return true;
   }
 
   //////////////////////////////////////////////////Cerrar secion
-  Future<UsuarioPrivate> logout() async {
+  Future<LoginResponse> logout() async {
     add(OnLogout());
     AcountLocalSave.saveisLogin(false);
-    AcountLocalSave.saveAcount(acount: UsuarioPrivate(usuario: Usuario()));
-    return UsuarioPrivate(usuario: Usuario());
+    AcountLocalSave.saveLoginResponse(acount: LoginResponse(validity: 0));
+
+    return LoginResponse(validity: 0);
   }
 
   Future<bool> register({
@@ -85,9 +89,5 @@ class AcountBloc extends Bloc<AcountEvent, AcountState> {
     );
     Navigator.of(context).pop();
     return true;
-  }
-
-  Future update(Usuario usuario) async {
-    AcountServices.save(usuario, state.acount.token);
   }
 }

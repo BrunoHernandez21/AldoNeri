@@ -1,3 +1,3 @@
 class AcountTemps {
-  static bool recuerdame = true;
+  final bool editable = false;
 }
