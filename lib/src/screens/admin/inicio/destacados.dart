@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../../../bloc/inicio/inicio_bloc.dart';
 import '../../../helpers/variables_globales.dart';
+import '../../../models/curso.dart';
 
 class Destacados extends StatelessWidget {
-  const Destacados({Key? key}) : super(key: key);
+  final InicioState estado;
+  const Destacados({
+    Key? key,
+    required this.estado,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +19,9 @@ class Destacados extends StatelessWidget {
       child: PageView.builder(
         controller: PageController(viewportFraction: .87),
         physics: const BouncingScrollPhysics(),
-        itemCount: 10,
+        itemCount: estado.cartelera.length,
         itemBuilder: (context, index) {
-          return const _Destacado();
+          return _Destacado(curso: estado.cartelera[index]);
         },
       ),
     );
@@ -23,7 +29,11 @@ class Destacados extends StatelessWidget {
 }
 
 class _Destacado extends StatelessWidget {
-  const _Destacado({Key? key}) : super(key: key);
+  final CursoModel curso;
+  const _Destacado({
+    Key? key,
+    required this.curso,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +45,15 @@ class _Destacado extends StatelessWidget {
         right: size.width * .03,
         top: size.width * .03,
       ),
+      clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Colors.black,
       ),
+      child: curso.thumbnail == null
+          ? Container(
+              color: Colors.black,
+            )
+          : Image.network(curso.thumbnail!, fit: BoxFit.fill),
     );
   }
 }

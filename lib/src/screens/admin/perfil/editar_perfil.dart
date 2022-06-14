@@ -40,7 +40,7 @@ class EditarPerfil extends StatelessWidget {
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30),
-                              gradient: LinearGradient(
+                              gradient: const LinearGradient(
                                 colors: [
                                   Color(0xFFF3B640),
                                   Color(0xFFF98245),

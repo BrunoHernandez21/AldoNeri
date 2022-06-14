@@ -24,7 +24,7 @@ class Categorys {
   String? parent;
   String? slug;
   String? dateAdded;
-  dynamic? lastModified;
+  dynamic lastModified;
   String? fontAwesomeClass;
   String? thumbnail;
   List<Categorys>? subCategories;
@@ -36,7 +36,7 @@ class Categorys {
     String? parent,
     String? slug,
     String? dateAdded,
-    dynamic? lastModified,
+    dynamic lastModified,
     String? fontAwesomeClass,
     String? thumbnail,
     List<Categorys>? subCategories,
@@ -66,10 +66,8 @@ class Categorys {
         slug: json["slug"],
         dateAdded: json["date_added"],
         lastModified: json["last_modified"],
-        fontAwesomeClass: json["font_awesome_class"] == null
-            ? null
-            : json["font_awesome_class"],
-        thumbnail: json["thumbnail"] == null ? null : json["thumbnail"],
+        fontAwesomeClass: json["font_awesome_class"],
+        thumbnail: json["thumbnail"],
         subCategories: json["sub_categories"] == null
             ? null
             : List<Categorys>.from(

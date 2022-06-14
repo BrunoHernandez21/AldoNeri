@@ -6,9 +6,11 @@ import 'package:aldo_neri/src/screens/admin/perfil/ajustes/new_password.dart';
 import 'package:aldo_neri/src/screens/admin/perfil/ayuda.dart';
 import 'package:aldo_neri/src/screens/admin/perfil/editar_perfil.dart';
 import 'package:aldo_neri/src/screens/admin/perfil/informacionlegal.dart';
+import 'package:aldo_neri/src/screens/curso/leccion/leccion.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../screens/acount/login.dart';
+import '../screens/admin/notify.dart';
 import '../screens/admin/perfil/acerdade.dart';
 import '../screens/admin/perfil/ajustes/ajustes.dart';
 import '../screens/admin/perfil/ajustes/password_confirm.dart';
@@ -17,7 +19,6 @@ import '../screens/acount/register.dart';
 import '../screens/acount/register_confirm.dart';
 import '../screens/acount/root.dart';
 import '../screens/curso/curso.dart';
-import '../screens/curso/subleccion/leccion.dart';
 
 class Ruts {
   static final Map<String, WidgetBuilder> _rutas = {
@@ -35,10 +36,11 @@ class Ruts {
     EditarPerfil.routeName: (_) => const EditarPerfil(),
     Ayuda.routeName: (_) => const Ayuda(),
     InformacionLegal.routeName: (_) => const InformacionLegal(),
-    Curso.routeName: (_) => Curso(),
-    SubLecciones.routeName: (_) => const SubLecciones(),
+    Curso.routeName: (_) => const Curso(),
+    Leccion.routeName: (_) => const Leccion(),
     Direccion.routeName: (_) => const Direccion(),
     Billetera.routeName: (_) => const Billetera(),
+    Notify.routeName: (_) => const Notify(),
   };
 
   static get rutas {

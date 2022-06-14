@@ -3,15 +3,20 @@ import 'package:aldo_neri/src/widgets/botones.dart';
 import 'package:aldo_neri/src/widgets/text.dart';
 import 'package:flutter/material.dart';
 
+import '../../bloc/selected_curso/selectedcurso_bloc.dart';
 import '../../helpers/new_icons.dart';
 
 class Descripcion extends StatelessWidget {
-  const Descripcion({Key? key}) : super(key: key);
+  final SelectedcursoState state;
+  const Descripcion({
+    Key? key,
+    required this.state,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
           Container(
@@ -52,7 +57,7 @@ class Descripcion extends StatelessWidget {
                         'Exercitation aute aute ad dolore fugiat magna ea amet reprehenderit id cupidatat.Nostrud ipsum cillum excepteur incididunt veniam.',
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 60.0),
+                    padding: EdgeInsets.symmetric(vertical: 60.0),
                     child: _Valoracion(),
                   ),
                 ],
@@ -88,12 +93,12 @@ class _Iterable extends StatelessWidget {
           child: Textos.parrafoNaranja(texto: titulo),
         ),
         if (subtitulo != null) Textos.tituloGrey(texto: subtitulo!),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         if (foto != null)
           Container(
-            margin: EdgeInsets.only(bottom: 20),
+            margin: const EdgeInsets.only(bottom: 20),
             width: double.infinity,
             height: Medidas.size.height * .25,
             decoration: BoxDecoration(
@@ -118,7 +123,7 @@ class _Valoracion extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 10),
           width: 70,
           height: 70,
           decoration: BoxDecoration(

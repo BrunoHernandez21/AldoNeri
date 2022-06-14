@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../widgets/text.dart';
-import '../notify.dart';
+import '../../widgets/text.dart';
+import '../admin/notify.dart';
 
 class AppbarCursos extends StatelessWidget {
-  final TabController controller;
-  const AppbarCursos({Key? key, required this.controller}) : super(key: key);
+  const AppbarCursos({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class AppbarCursos extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10.0, right: 5),
               child: IconButton(
                 onPressed: () {
-                  controller.animateTo(0);
+                  Navigator.pop(context);
                 },
                 icon: const Icon(Icons.arrow_back_ios, size: 20),
               )),

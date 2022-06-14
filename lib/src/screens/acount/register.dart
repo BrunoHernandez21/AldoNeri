@@ -1,5 +1,4 @@
 import 'package:aldo_neri/src/cores/compositor.dart';
-import 'package:aldo_neri/src/screens/acount/register_confirm.dart';
 import 'package:aldo_neri/src/widgets/botones.dart';
 import 'package:aldo_neri/src/widgets/inputs_text.dart';
 import 'package:flutter/material.dart';
@@ -94,16 +93,14 @@ class Register extends StatelessWidget {
                   ),
                   Botones.degradedTextButtonOrange(
                     text: 'Registrate',
-                    onTap: () {
-                      Compositor.onRegister(
+                    onTap: () async {
+                      await Compositor.onRegister(
                         context: context,
                         email: email.text,
                         lastname: '',
                         name: nombre.text,
                         password: telefono.text,
                       );
-                      Navigator.of(context)
-                          .pushNamed(RegisterConfirm.routeName);
                     },
                   ),
                   Padding(

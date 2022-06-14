@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:aldo_neri/src/models/curso.dart';
 import 'package:flutter/cupertino.dart';
 
 class Colores {
@@ -49,4 +50,90 @@ class URL {
 
 class BaseDeDatos {
   static const loginResponse = "loginResponse";
+}
+
+class Pruebas {
+  static final List<CursoModel> cartelera = [
+    CursoModel(
+        title: "Curso de cajas",
+        description:
+            "Curos de perritos donde los gatitos seran felices, el tratamiento de los gatitos para su salud y posible productividad en el campo",
+        categoryId: "",
+        thumbnail:
+            "https://www.embalajesterra.com/blog/wp-content/uploads/2017/10/cajas-carton-corruuado-embalaje.jpg",
+        sections: [
+          Section(title: "Introduccion", lessons: [
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+          ]),
+          Section(title: "Desarrollo", lessons: [
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+          ]),
+          Section(title: "Fin", lessons: [
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+          ]),
+        ]),
+    CursoModel(
+        title: "Curso de gatitos",
+        description:
+            "Curos de cajas, su manejo, posturas para su manipulacion, ademas de herramientas o aditamentos necesarios para no pejudicar la salud personal durante su manipulacion",
+        categoryId: "",
+        thumbnail:
+            "https://sumedico.blob.core.windows.net/images/2020/03/17/cuidadosgatobebe_2-focus-min0.07-0.45-640-384.jpg",
+        sections: [
+          Section(title: "Introduccion", lessons: [
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+          ]),
+          Section(title: "Desarrollo", lessons: [
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+          ]),
+          Section(title: "Fin", lessons: [
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+          ]),
+        ]),
+    CursoModel(
+        title: "Curso de perritos",
+        description:
+            "Curos de perritos donde los perritos seran felices, el tratamiento de los perritos para su salud y posible productividad en el campo",
+        categoryId: "",
+        thumbnail:
+            "https://live.hsmob.io/storage/images/wakyma.com/wakyma.com_consejos-basicos-para-saber-como-entrenar-a-un-perro.jpg",
+        sections: [
+          Section(title: "Introduccion", lessons: [
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+          ]),
+          Section(title: "Desarrollo", lessons: [
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+          ]),
+          Section(title: "Fin", lessons: [
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+            Lesson(title: "asdasd"),
+          ]),
+        ]),
+  ];
 }

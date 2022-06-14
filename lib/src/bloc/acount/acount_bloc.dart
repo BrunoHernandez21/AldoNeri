@@ -52,7 +52,6 @@ class AcountBloc extends Bloc<AcountEvent, AcountState> {
     add(OnLogout());
     AcountLocalSave.saveisLogin(false);
     AcountLocalSave.saveLoginResponse(acount: LoginResponse(validity: 0));
-
     return LoginResponse(validity: 0);
   }
 

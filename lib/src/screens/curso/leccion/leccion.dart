@@ -5,9 +5,9 @@ import '../../../widgets/text.dart';
 import 'conversacion.dart';
 import 'video.dart';
 
-class SubLecciones extends StatelessWidget {
+class Leccion extends StatelessWidget {
   static const routeName = 'subLecciones';
-  const SubLecciones({Key? key}) : super(key: key);
+  const Leccion({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -12,16 +12,18 @@ import 'ajustes/ajustes.dart';
 import 'appbar.dart';
 
 class Perfil extends StatelessWidget {
-  const Perfil({Key? key}) : super(key: key);
+  final TabController controller;
+  const Perfil({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BackGrounds.burbujas(
       child: SafeArea(
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              const AppbarMiPerfil(),
+              AppbarMiPerfil(controller: controller),
               Container(
                 width: Medidas.size.width * .4,
                 padding: const EdgeInsets.only(bottom: 20),

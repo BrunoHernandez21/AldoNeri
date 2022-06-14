@@ -1,21 +1,57 @@
+import 'package:aldo_neri/src/cores/compositor.dart';
 import 'package:aldo_neri/src/helpers/variables_globales.dart';
 import 'package:aldo_neri/src/widgets/botones.dart';
 import 'package:aldo_neri/src/widgets/text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import '../../../bloc/curso/curso_bloc.dart';
 import '../../../helpers/new_icons.dart';
+import '../../../models/curso.dart';
 import '../../curso/curso.dart';
 
 class Descubrir extends StatelessWidget {
-  const Descubrir({Key? key}) : super(key: key);
+  final CursoState state;
+  const Descubrir({Key? key, required this.state}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
+    return RefreshIndicator(
+      onRefresh: () async {
+        Compositor.loadDescubrir(context);
+      },
+      child: state.descubrir.isEmpty
+          ? emptyList()
+          : ListView.builder(
+              physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              itemCount: state.descubrir.length,
+              itemBuilder: (BuildContext context, int i) {
+                return _Tarjeta(curso: state.descubrir[i]);
+              },
+            ),
+    );
+  }
+
+  Widget emptyList() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0, right: 20, top: 40, bottom: 0),
+      child: ListView(
+        physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics()),
         children: [
-          _Tarjeta(),
-          _Tarjeta(),
+          const Icon(
+            NewIcons.geometria_a,
+            color: Colors.grey,
+            size: 100,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
+            child: Textos.parrafoGrey(
+                align: TextAlign.center,
+                texto:
+                    'En este momento parece que hay conexcion a internet\nDesliza para actualizar'),
+          ),
         ],
       ),
     );
@@ -23,7 +59,11 @@ class Descubrir extends StatelessWidget {
 }
 
 class _Tarjeta extends StatelessWidget {
-  const _Tarjeta({Key? key}) : super(key: key);
+  final CursoModel curso;
+  const _Tarjeta({
+    Key? key,
+    required this.curso,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +79,7 @@ class _Tarjeta extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
                     width: 70,
                     height: 70,
                     decoration: BoxDecoration(
@@ -65,19 +105,24 @@ class _Tarjeta extends StatelessWidget {
                         children: [
                           SizedBox(
                             width: Medidas.size.width * .55,
-                            child: Textos.parrafoNaranja(
-                                texto: 'Encuentro Terapeutico'),
+                            child:
+                                Textos.parrafoNaranja(texto: curso.title ?? ""),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: const [
-                              Icon(Icons.star, color: Colors.orange, size: 15),
-                              Icon(Icons.star, color: Colors.orange, size: 15),
-                              Icon(Icons.star, color: Colors.orange, size: 15),
-                              Icon(Icons.star, color: Colors.orange, size: 15),
-                              Icon(Icons.star, color: Colors.orange, size: 15),
-                            ],
+                          RatingBar.builder(
+                            initialRating: 2.2,
+                            minRating: 0,
+                            itemSize: 15,
+                            maxRating: 5,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            //itemPadding: EdgeInsets.only(right: 1.0),
+                            itemBuilder: (context, _) => const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            onRatingUpdate: (rating) {},
+                            ignoreGestures: true,
                           )
                         ],
                       ),
@@ -90,12 +135,12 @@ class _Tarjeta extends StatelessWidget {
                 child: Textos.parrafoGrey(
                     renglones: 6,
                     align: TextAlign.justify,
-                    texto:
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+                    texto: curso.description ?? ""),
               ),
               Botones.degradedTextButtonOrange(
                   text: 'Saber Más',
                   onTap: () {
+                    //TODO: implementar selectedCurso
                     Navigator.pushNamed(context, Curso.routeName);
                   })
             ],

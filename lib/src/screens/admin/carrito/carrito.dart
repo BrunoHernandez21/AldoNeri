@@ -5,7 +5,8 @@ import 'checkout/checkout.dart';
 import 'detalles/detalles.dart';
 
 class Carrito extends StatelessWidget {
-  const Carrito({Key? key}) : super(key: key);
+  final TabController controller;
+  const Carrito({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +15,9 @@ class Carrito extends StatelessWidget {
         initialIndex: 0,
         length: 2,
         child: Column(
-          children: const [
-            AppbarCarrito(),
-            SizedBox(
+          children: [
+            AppbarCarrito(controller: controller),
+            const SizedBox(
               height: 55,
               child: TabBar(
                 labelColor: Colors.orange,
@@ -32,7 +33,7 @@ class Carrito extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
+            const Expanded(
               child: TabBarView(
                 physics: BouncingScrollPhysics(),
                 children: <Widget>[

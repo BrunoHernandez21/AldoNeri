@@ -4,8 +4,8 @@
 
 import 'dart:convert';
 
-class Curso {
-  Curso({
+class CursoModel {
+  CursoModel({
     this.id,
     this.title,
     this.shortDescription,
@@ -93,7 +93,7 @@ class Curso {
   int? isPurchased;
   List<String>? includes;
 
-  Curso copyWith({
+  CursoModel copyWith({
     String? id,
     String? title,
     String? shortDescription,
@@ -140,7 +140,7 @@ class Curso {
     int? isPurchased,
     List<String>? includes,
   }) =>
-      Curso(
+      CursoModel(
         id: id ?? this.id,
         title: title ?? this.title,
         shortDescription: shortDescription ?? this.shortDescription,
@@ -187,11 +187,12 @@ class Curso {
         includes: includes ?? this.includes,
       );
 
-  factory Curso.fromJson(String str) => Curso.fromMap(json.decode(str));
+  factory CursoModel.fromJson(String str) =>
+      CursoModel.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Curso.fromMap(Map<String, dynamic> json) => Curso(
+  factory CursoModel.fromMap(Map<String, dynamic> json) => CursoModel(
         id: json["id"],
         title: json["title"],
         shortDescription: json["short_description"],
@@ -456,7 +457,7 @@ class Lesson {
         videoUrlWeb: json["video_url_web"],
         videoTypeWeb: json["video_type_web"],
         lessonType: json["lesson_type"],
-        attachment: json["attachment"] == null ? null : json["attachment"],
+        attachment: json["attachment"],
         attachmentUrl: json["attachment_url"],
         attachmentType: json["attachment_type"],
         summary: json["summary"],
@@ -475,7 +476,7 @@ class Lesson {
         "video_url_web": videoUrlWeb,
         "video_type_web": videoTypeWeb,
         "lesson_type": lessonType,
-        "attachment": attachment == null ? null : attachment,
+        "attachment": attachment,
         "attachment_url": attachmentUrl,
         "attachment_type": attachmentType,
         "summary": summary,

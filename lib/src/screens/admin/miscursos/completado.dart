@@ -1,19 +1,55 @@
 import 'package:flutter/material.dart';
 
+import '../../../bloc/curso/curso_bloc.dart';
+import '../../../cores/compositor.dart';
 import '../../../helpers/new_icons.dart';
 import '../../../helpers/variables_globales.dart';
+import '../../../models/curso.dart';
 import '../../../widgets/text.dart';
 
 class Completado extends StatelessWidget {
-  const Completado({Key? key}) : super(key: key);
+  final CursoState state;
+  const Completado({Key? key, required this.state}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
+    return RefreshIndicator(
+      onRefresh: () async {
+        Compositor.loadcompletado(context);
+      },
+      child: state.completado.isEmpty
+          ? emptyList()
+          : ListView.builder(
+              physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              itemCount: state.completado.length,
+              itemBuilder: (BuildContext context, int i) {
+                return _Tarjeta(curso: state.completado[i]);
+              },
+            ),
+    );
+  }
+
+  Widget emptyList() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0, right: 20, top: 40, bottom: 0),
+      child: ListView(
+        physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics()),
         children: [
-          _Tarjeta(),
-          _Tarjeta(),
+          const Icon(
+            NewIcons.geometria_a,
+            color: Colors.grey,
+            size: 100,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
+            child: Textos.parrafoGrey(
+              align: TextAlign.center,
+              texto:
+                  'En este momento parece que hay conexcion a internet\nDesliza para actualizar',
+            ),
+          ),
         ],
       ),
     );
@@ -21,7 +57,11 @@ class Completado extends StatelessWidget {
 }
 
 class _Tarjeta extends StatelessWidget {
-  const _Tarjeta({Key? key}) : super(key: key);
+  final CursoModel curso;
+  const _Tarjeta({
+    Key? key,
+    required this.curso,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +102,8 @@ class _Tarjeta extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 10.0),
+                const Padding(
+                  padding: EdgeInsets.only(right: 10.0),
                   child: Icon(Icons.check_circle, color: Color(0xFFFA7F46)),
                 ),
               ],

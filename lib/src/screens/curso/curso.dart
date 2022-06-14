@@ -1,103 +1,80 @@
 import 'package:aldo_neri/src/widgets/bacground.dart';
-import 'package:aldo_neri/src/widgets/text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'lisita.dart';
+import '../../bloc/selected_curso/selectedcurso_bloc.dart';
+import 'appbar.dart';
+import 'lecciones.dart';
 import 'descripcion.dart';
 import 'recursos.dart';
 
 class Curso extends StatelessWidget {
   static const routeName = 'cursosL';
-  Curso({Key? key}) : super(key: key);
-  bool isBuy = false;
+  const Curso({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 0,
-      length: isBuy ? 3 : 2,
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          foregroundColor: Colors.grey,
-          centerTitle: true,
-          title: Textos.tituloGrey(texto: 'Encuentro Terapeutico'),
-          actions: [
-            SizedBox(
-              height: 34,
-              width: 34,
-              child: GestureDetector(
-                child: Stack(
-                  children: [
-                    const Icon(Icons.notifications, size: 34),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 16,
-                        width: 16,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffF2BC3F),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Text(
-                          '3',
-                          style: TextStyle(
-                            color: Color(0xffFCF2D8),
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                onTap: () {
-                  //TODO
-                },
-              ),
+    return BlocBuilder<SelectedcursoBloc, SelectedcursoState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: DefaultTabController(
+            initialIndex: 0,
+            length: state.isBuy ? 3 : 2,
+            child: BackGrounds.burbujas(
+              child: BodyCursos(state: state),
             ),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.menu))
-          ],
-        ),
-        body: BackGrounds.burbujas(
-          child: SafeArea(
-            child: Column(
-              children: [
-                SizedBox(
+          ),
+        );
+      },
+    );
+  }
+}
+
+class BodyCursos extends StatelessWidget {
+  final SelectedcursoState state;
+  const BodyCursos({
+    Key? key,
+    required this.state,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Column(
+        children: [
+          const AppbarCursos(),
+          SizedBox(
+            width: double.infinity,
+            child: TabBar(
+              labelColor: Colors.orange,
+              unselectedLabelColor: Colors.grey,
+              indicatorColor: Colors.orange,
+              tabs: <Widget>[
+                const Tab(
+                  text: 'Descripcion',
+                ),
+                const Tab(
                   height: 55,
-                  width: double.infinity,
-                  child: TabBar(
-                    labelColor: Colors.orange,
-                    unselectedLabelColor: Colors.grey,
-                    indicatorColor: Colors.orange,
-                    tabs: <Widget>[
-                      const Tab(
-                        text: 'Descripcion',
-                      ),
-                      const Tab(
-                        height: 55,
-                        text: 'Lecciones',
-                      ),
-                      if (isBuy)
-                        const Tab(
-                          text: 'Recursos',
-                        ),
-                    ],
-                  ),
+                  text: 'Lecciones',
                 ),
-                Expanded(
-                  child: TabBarView(
-                    physics: BouncingScrollPhysics(),
-                    children: <Widget>[
-                      const Descripcion(),
-                      const Lecciones(),
-                      if (isBuy) const Recursos(),
-                    ],
+                if (state.isBuy)
+                  const Tab(
+                    text: 'Recursos',
                   ),
-                ),
               ],
             ),
           ),
-        ),
+          Expanded(
+            child: TabBarView(
+              physics: const BouncingScrollPhysics(),
+              children: <Widget>[
+                Descripcion(state: state),
+                Lecciones(state: state),
+                if (state.isBuy) Recursos(state: state),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

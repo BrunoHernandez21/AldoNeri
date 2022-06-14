@@ -1,9 +1,11 @@
+import 'package:aldo_neri/src/screens/admin/notify.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/text.dart';
 
 class AppbarCarrito extends StatelessWidget {
-  const AppbarCarrito({Key? key}) : super(key: key);
+  final TabController controller;
+  const AppbarCarrito({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +20,13 @@ class AppbarCarrito extends StatelessWidget {
             Padding(
                 padding: const EdgeInsets.only(left: 10.0, right: 5),
                 child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.arrow_back_ios),
+                  onPressed: () {
+                    controller.animateTo(0);
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                    size: 20,
+                  ),
                 )),
             Flexible(
               child: Center(
@@ -34,7 +41,7 @@ class AppbarCarrito extends StatelessWidget {
               child: GestureDetector(
                 child: Stack(
                   children: [
-                    const Icon(Icons.notifications, size: 34),
+                    const Icon(Icons.notifications, size: 27),
                     Align(
                       alignment: Alignment.topRight,
                       child: Container(
@@ -57,11 +64,13 @@ class AppbarCarrito extends StatelessWidget {
                   ],
                 ),
                 onTap: () {
-                  //TODO
+                  Navigator.of(context).pushNamed(Notify.routeName);
                 },
               ),
             ),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.menu))
+            const SizedBox(
+              width: 10,
+            )
           ],
         ),
       ),

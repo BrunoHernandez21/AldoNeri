@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/curso/curso_bloc.dart';
 import '../../../helpers/variables_globales.dart';
 import '../../../widgets/bacground.dart';
 import 'appbar.dart';
@@ -9,7 +11,8 @@ import 'descubrir.dart';
 import 'proximamente.dart';
 
 class MisCursos extends StatefulWidget {
-  const MisCursos({Key? key}) : super(key: key);
+  final TabController controller;
+  const MisCursos({Key? key, required this.controller}) : super(key: key);
 
   @override
   State<MisCursos> createState() => _MisCursosState();
@@ -40,9 +43,8 @@ class _MisCursosState extends State<MisCursos> with TickerProviderStateMixin {
       child: SafeArea(
         child: Column(
           children: [
-            const AppbarCursos(),
+            AppbarCursos(controller: widget.controller),
             SizedBox(
-              height: 55,
               child: TabBar(
                 controller: controller,
                 isScrollable: true,
@@ -65,17 +67,21 @@ class _MisCursosState extends State<MisCursos> with TickerProviderStateMixin {
                 ],
               ),
             ),
-            Expanded(
-              child: TabBarView(
-                controller: controller,
-                physics: const BouncingScrollPhysics(),
-                children: <Widget>[
-                  Continuar(controller: controller),
-                  const Descubrir(),
-                  const Proximamente(),
-                  const Completado(),
-                ],
-              ),
+            BlocBuilder<CursoBloc, CursoState>(
+              builder: (context, state) {
+                return Expanded(
+                  child: TabBarView(
+                    controller: controller,
+                    physics: const BouncingScrollPhysics(),
+                    children: <Widget>[
+                      Continuar(controller: controller, state: state),
+                      Descubrir(state: state),
+                      Proximamente(state: state),
+                      Completado(state: state),
+                    ],
+                  ),
+                );
+              },
             ),
           ],
         ),

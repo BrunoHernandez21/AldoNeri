@@ -44,11 +44,11 @@ class _AdminState extends State<Admin> with TickerProviderStateMixin {
             child: TabBarView(
               controller: controller,
               physics: const BouncingScrollPhysics(),
-              children: const <Widget>[
-                Inicio(),
-                MisCursos(),
-                Perfil(),
-                Carrito(),
+              children: <Widget>[
+                const Inicio(),
+                MisCursos(controller: controller),
+                Perfil(controller: controller),
+                Carrito(controller: controller),
               ],
             ),
           ),

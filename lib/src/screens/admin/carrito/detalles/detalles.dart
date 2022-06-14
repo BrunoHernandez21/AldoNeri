@@ -12,6 +12,7 @@ class Detalles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
           const Padding(
@@ -83,8 +84,8 @@ class Detalles extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
             child: _Info(),
           ),
           Padding(

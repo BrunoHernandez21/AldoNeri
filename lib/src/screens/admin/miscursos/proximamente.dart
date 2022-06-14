@@ -1,24 +1,52 @@
 import 'package:aldo_neri/src/helpers/new_icons.dart';
+import 'package:aldo_neri/src/models/curso.dart';
 import 'package:flutter/material.dart';
 
+import '../../../bloc/curso/curso_bloc.dart';
+import '../../../cores/compositor.dart';
 import '../../../helpers/variables_globales.dart';
 import '../../../widgets/text.dart';
 
-class Proximamente extends StatefulWidget {
-  const Proximamente({Key? key}) : super(key: key);
+class Proximamente extends StatelessWidget {
+  final CursoState state;
+  const Proximamente({Key? key, required this.state}) : super(key: key);
 
-  @override
-  State<Proximamente> createState() => _ProximamenteState();
-}
-
-class _ProximamenteState extends State<Proximamente> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: const [
-          _Tarjeta(),
-          _Tarjeta(),
+    return RefreshIndicator(
+      onRefresh: () async {
+        Compositor.loadProximamente(context);
+      },
+      child: state.proximamente.isEmpty
+          ? emptyList()
+          : ListView.builder(
+              itemCount: state.proximamente.length,
+              itemBuilder: (BuildContext context, int i) {
+                return _Tarjeta(curso: state.proximamente[i]);
+              },
+            ),
+    );
+  }
+
+  Widget emptyList() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0, right: 20, top: 40, bottom: 0),
+      child: ListView(
+        physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics()),
+        children: [
+          const Icon(
+            NewIcons.geometria_a,
+            color: Colors.grey,
+            size: 100,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
+            child: Textos.parrafoGrey(
+                align: TextAlign.center,
+                texto:
+                    'En este momento parece que hay conexcion a internet\nDesliza para actualizar'),
+          ),
         ],
       ),
     );
@@ -26,29 +54,33 @@ class _ProximamenteState extends State<Proximamente> {
 }
 
 class _Tarjeta extends StatelessWidget {
-  const _Tarjeta({Key? key}) : super(key: key);
+  final CursoModel curso;
+  const _Tarjeta({Key? key, required this.curso}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
       child: Card(
+        clipBehavior: Clip.antiAlias,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 20.0),
-              child: Container(
-                color: Colors.black,
+              child: SizedBox(
                 width: double.infinity,
                 height: Medidas.size.width * .60,
+                child: curso.thumbnail == null
+                    ? null
+                    : Image.network(curso.thumbnail!, fit: BoxFit.fill),
               ),
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
                   width: 60,
                   height: 60,
                   decoration: BoxDecoration(
@@ -76,8 +108,7 @@ class _Tarjeta extends StatelessWidget {
               child: Textos.parrafoGrey(
                   renglones: 6,
                   align: TextAlign.justify,
-                  texto:
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+                  texto: curso.description ?? ""),
             ),
           ],
         ),

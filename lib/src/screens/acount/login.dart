@@ -5,11 +5,11 @@ import 'package:aldo_neri/src/screens/acount/register.dart';
 import 'package:flutter/material.dart';
 
 import '../../helpers/variables_globales.dart';
-import '../../services/acount_services.dart';
 import '../../widgets/botones.dart';
 import '../../widgets/chec_box.dart';
 import '../../widgets/inputs_text.dart';
 import '../../widgets/text.dart';
+import '../admin/admin.dart';
 
 class Login extends StatelessWidget {
   static const routeName = '/login';
@@ -90,25 +90,11 @@ class Login extends StatelessWidget {
                 Botones.degradedTextButtonOrange(
                   text: 'Inicia Sesión',
                   onTap: () async {
-                    await Compositor.onLogin(
-                        context, email.text, password.text);
-                    await AcountServices.updateUserPassword(
-                      currentPassword: 'dime00',
-                      newPassword: 'dime11',
-                      token:
-                          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMTkiLCJmaXJzdF9uYW1lIjpudWxsLCJsYXN0X25hbWUiOm51bGwsImVtYWlsIjpudWxsLCJyb2xlIjoidXNlciIsInZhbGlkaXR5IjoxfQ.oHv878e6TXByO6JQ6imz0JKDRDQyANjbScL_cTXpqqI',
-                    );
-                    /*await AcountServices.updateUserData(
-                        token:
-                            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMTkiLCJmaXJzdF9uYW1lIjpudWxsLCJsYXN0X25hbWUiOm51bGwsImVtYWlsIjpudWxsLCJyb2xlIjoidXNlciIsInZhbGlkaXR5IjoxfQ.oHv878e6TXByO6JQ6imz0JKDRDQyANjbScL_cTXpqqI',
-                        user: AcountResponse(
-                          email: 'ichimar21@gmail.com',
-                        ));
-                    await AcountServices.getUserInfo(
-                        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMTkiLCJmaXJzdF9uYW1lIjpudWxsLCJsYXN0X25hbWUiOm51bGwsImVtYWlsIjpudWxsLCJyb2xlIjoidXNlciIsInZhbGlkaXR5IjoxfQ.oHv878e6TXByO6JQ6imz0JKDRDQyANjbScL_cTXpqqI');
-                    
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        Admin.routeName, (route) => false); */
+                    if (await Compositor.onLogin(
+                        context, email.text, password.text)) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          Admin.routeName, (route) => false);
+                    }
                   },
                 ),
                 Padding(

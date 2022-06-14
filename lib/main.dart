@@ -1,4 +1,6 @@
 import 'package:aldo_neri/src/bloc/acount/acount_bloc.dart';
+import 'package:aldo_neri/src/bloc/curso/curso_bloc.dart';
+import 'package:aldo_neri/src/bloc/selected_curso/selectedcurso_bloc.dart';
 import 'package:aldo_neri/src/bloc/shaderPreferences/shaderpreferences_bloc.dart';
 import 'package:aldo_neri/src/cores/acount.dart';
 import 'package:aldo_neri/src/cores/preferences_app.dart';
@@ -14,6 +16,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'generated/l10n.dart';
+import 'src/bloc/inicio/inicio_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,9 +58,20 @@ class Appstate extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => AcountBloc(acount: acount, isLogin: isLogin)),
+          create: (context) => AcountBloc(
+            acount: acount,
+            isLogin: isLogin,
+          ),
+        ),
         BlocProvider(
-            create: (_) => ShaderpreferencesBloc(locale: locale, theme: theme)),
+          create: (_) => ShaderpreferencesBloc(
+            locale: locale,
+            theme: theme,
+          ),
+        ),
+        BlocProvider(create: (_) => InicioBloc()),
+        BlocProvider(create: (_) => CursoBloc()),
+        BlocProvider(create: (_) => SelectedcursoBloc()),
       ],
       child: BlocBuilder<ShaderpreferencesBloc, ShaderpreferencesState>(
         builder: (context, state) {

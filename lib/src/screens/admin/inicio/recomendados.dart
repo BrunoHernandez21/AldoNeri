@@ -12,7 +12,7 @@ class Recomendado extends StatelessWidget {
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        child: Row(children: [
+        child: Row(children: const [
           _Destacado(),
           _Destacado(),
           _Destacado(),

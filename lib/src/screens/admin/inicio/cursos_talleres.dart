@@ -12,7 +12,7 @@ class CursosTalleres extends StatelessWidget {
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        child: Row(children: [
+        child: Row(children: const [
           _Destacado(),
           _Destacado(),
           _Destacado(),
@@ -35,7 +35,7 @@ class _Destacado extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Colors.black,
+        color: Colors.orange.shade300,
       ),
     );
   }
