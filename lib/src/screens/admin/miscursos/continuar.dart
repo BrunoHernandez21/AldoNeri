@@ -7,7 +7,6 @@ import '../../../helpers/new_icons.dart';
 import '../../../helpers/variables_globales.dart';
 import '../../../models/curso.dart';
 import '../../../widgets/text.dart';
-import '../../curso/curso.dart';
 
 class Continuar extends StatelessWidget {
   final TabController controller;
@@ -40,7 +39,10 @@ class Continuar extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, Curso.routeName);
+                    Compositor.selectCurso(
+                      context: context,
+                      curso: state.continuar[index],
+                    );
                   },
                 );
               },

@@ -38,6 +38,8 @@ dependencies:
   url_launcher: ^6.1.0
   map_launcher: ^2.2.1+2
   flutter_rating_bar: ^4.0.0
+  flutter_credit_card: ^3.0.1
+  roundcheckbox: ^2.0.4+1
 
 #funciones para desarrolador
 dev_dependencies:

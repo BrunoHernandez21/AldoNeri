@@ -24,6 +24,7 @@ class EditarPerfil extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
                   Container(
@@ -32,7 +33,7 @@ class EditarPerfil extends StatelessWidget {
                     child: Stack(
                       children: [
                         CircleAvatar(
-                          child: Text('BZ'),
+                          child: const Text('BZ'),
                           radius: Medidas.size.width * .18,
                         ),
                         Align(
@@ -88,6 +89,9 @@ class EditarPerfil extends StatelessWidget {
                   ),
                   Botones.degradedTextButtonOrange(
                       text: 'Guardar Cambios', onTap: () {}),
+                  const SizedBox(
+                    height: 60,
+                  ),
                 ],
               ),
             ),

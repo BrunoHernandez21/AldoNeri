@@ -16,6 +16,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'generated/l10n.dart';
+import 'src/bloc/carrito/carrito_bloc.dart';
 import 'src/bloc/inicio/inicio_bloc.dart';
 
 void main() async {
@@ -72,6 +73,7 @@ class Appstate extends StatelessWidget {
         BlocProvider(create: (_) => InicioBloc()),
         BlocProvider(create: (_) => CursoBloc()),
         BlocProvider(create: (_) => SelectedcursoBloc()),
+        BlocProvider(create: (_) => CarritoBloc()),
       ],
       child: BlocBuilder<ShaderpreferencesBloc, ShaderpreferencesState>(
         builder: (context, state) {

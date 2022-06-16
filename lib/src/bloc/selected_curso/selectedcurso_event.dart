@@ -11,3 +11,17 @@ class OnSelectCurso extends SelectedcursoEvent {
     required this.isBuy,
   });
 }
+
+class OnSelectLesson extends SelectedcursoEvent {
+  final Lesson lesson;
+  OnSelectLesson({
+    required this.lesson,
+  });
+}
+
+class OnSelectSection extends SelectedcursoEvent {
+  final Section section;
+  OnSelectSection({
+    required this.section,
+  });
+}

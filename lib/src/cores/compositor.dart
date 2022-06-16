@@ -1,10 +1,15 @@
 import 'package:aldo_neri/src/bloc/acount/acount_bloc.dart';
 import 'package:aldo_neri/src/bloc/inicio/inicio_bloc.dart';
+import 'package:aldo_neri/src/bloc/selected_curso/selectedcurso_bloc.dart';
+import 'package:aldo_neri/src/screens/curso/curso.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/curso/curso_bloc.dart';
 import '../helpers/variables_globales.dart';
+import '../models/curso.dart';
+import '../models/lesson.dart';
+import '../models/section.dart';
 import '../screens/acount/register_confirm.dart';
 
 class Compositor {
@@ -110,5 +115,26 @@ class Compositor {
 
   static Future<void> selectCurso({
     required BuildContext context,
-  }) async {}
+    required CursoModel curso,
+  }) async {
+    final bSC = BlocProvider.of<SelectedcursoBloc>(context);
+    bSC.add(OnSelectCurso(curso: curso, isBuy: true));
+    Navigator.of(context).pushNamed(Curso.routeName);
+  }
+
+  static Future<void> selectLesson({
+    required BuildContext context,
+    required Lesson lesson,
+  }) async {
+    final bSC = BlocProvider.of<SelectedcursoBloc>(context);
+    bSC.add(OnSelectLesson(lesson: lesson));
+  }
+
+  static Future<void> selectSection({
+    required BuildContext context,
+    required Section section,
+  }) async {
+    final bSC = BlocProvider.of<SelectedcursoBloc>(context);
+    bSC.add(OnSelectSection(section: section));
+  }
 }

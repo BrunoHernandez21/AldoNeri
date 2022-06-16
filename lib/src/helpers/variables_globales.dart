@@ -3,6 +3,9 @@
 import 'package:aldo_neri/src/models/curso.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../models/lesson.dart';
+import '../models/section.dart';
+
 class Colores {
   static const Color background = Color(0xFDFDFDFF);
 }
@@ -63,22 +66,70 @@ class Pruebas {
             "https://www.embalajesterra.com/blog/wp-content/uploads/2017/10/cajas-carton-corruuado-embalaje.jpg",
         sections: [
           Section(title: "Introduccion", lessons: [
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
+            Lesson(
+              title: "Introduccion 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Introduccion 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Introduccion 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Introduccion 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
           ]),
           Section(title: "Desarrollo", lessons: [
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
+            Lesson(
+              title: "Desarrollo 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Desarrollo 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Desarrollo 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Desarrollo 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
           ]),
           Section(title: "Fin", lessons: [
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
+            Lesson(
+              title: "Fin 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Fin 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Fin 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Fin 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
           ]),
         ]),
     CursoModel(
@@ -90,22 +141,70 @@ class Pruebas {
             "https://sumedico.blob.core.windows.net/images/2020/03/17/cuidadosgatobebe_2-focus-min0.07-0.45-640-384.jpg",
         sections: [
           Section(title: "Introduccion", lessons: [
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
+            Lesson(
+              title: "Introduccion 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Introduccion 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Introduccion 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Introduccion 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
           ]),
           Section(title: "Desarrollo", lessons: [
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
+            Lesson(
+              title: "Desarrollo 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Desarrollo 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Desarrollo 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Desarrollo 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
           ]),
           Section(title: "Fin", lessons: [
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
+            Lesson(
+              title: "Fin 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Fin 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Fin 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Fin 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
           ]),
         ]),
     CursoModel(
@@ -117,22 +216,70 @@ class Pruebas {
             "https://live.hsmob.io/storage/images/wakyma.com/wakyma.com_consejos-basicos-para-saber-como-entrenar-a-un-perro.jpg",
         sections: [
           Section(title: "Introduccion", lessons: [
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
+            Lesson(
+              title: "Introduccion 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Introduccion 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Introduccion 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Introduccion 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
           ]),
           Section(title: "Desarrollo", lessons: [
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
+            Lesson(
+              title: "Desarrollo 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Desarrollo 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Desarrollo 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Desarrollo 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
           ]),
           Section(title: "Fin", lessons: [
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
-            Lesson(title: "asdasd"),
+            Lesson(
+              title: "Fin 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Fin 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Fin 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
+            Lesson(
+              title: "Fin 1",
+              summary:
+                  "La descripcion de este esta clase es hacer una clase divertida",
+            ),
           ]),
         ]),
   ];

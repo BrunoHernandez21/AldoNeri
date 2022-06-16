@@ -8,7 +8,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../../../bloc/curso/curso_bloc.dart';
 import '../../../helpers/new_icons.dart';
 import '../../../models/curso.dart';
-import '../../curso/curso.dart';
 
 class Descubrir extends StatelessWidget {
   final CursoState state;
@@ -140,8 +139,10 @@ class _Tarjeta extends StatelessWidget {
               Botones.degradedTextButtonOrange(
                   text: 'Saber Más',
                   onTap: () {
-                    //TODO: implementar selectedCurso
-                    Navigator.pushNamed(context, Curso.routeName);
+                    Compositor.selectCurso(
+                      context: context,
+                      curso: curso,
+                    );
                   })
             ],
           ),

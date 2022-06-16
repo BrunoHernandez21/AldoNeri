@@ -28,7 +28,7 @@ class Perfil extends StatelessWidget {
                 width: Medidas.size.width * .4,
                 padding: const EdgeInsets.only(bottom: 20),
                 child: CircleAvatar(
-                  child: Text('BZ'),
+                  child: const Text('BZ'),
                   radius: Medidas.size.width * .15,
                 ),
               ),

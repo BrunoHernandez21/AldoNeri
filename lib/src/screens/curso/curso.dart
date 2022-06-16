@@ -18,7 +18,7 @@ class Curso extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           body: DefaultTabController(
-            initialIndex: 0,
+            initialIndex: state.isBuy ? 1 : 0,
             length: state.isBuy ? 3 : 2,
             child: BackGrounds.burbujas(
               child: BodyCursos(state: state),

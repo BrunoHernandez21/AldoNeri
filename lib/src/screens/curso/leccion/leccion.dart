@@ -1,5 +1,7 @@
+import 'package:aldo_neri/src/bloc/selected_curso/selectedcurso_bloc.dart';
 import 'package:aldo_neri/src/widgets/bacground.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../widgets/text.dart';
 import 'conversacion.dart';
@@ -16,81 +18,56 @@ class Leccion extends StatelessWidget {
       length: 2,
       child: Scaffold(
         extendBodyBehindAppBar: true,
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           foregroundColor: Colors.grey,
           centerTitle: true,
           title: Textos.parrafo(texto: 'Encuentro Terapeutico'),
-          actions: [
-            SizedBox(
-              height: 34,
-              width: 34,
-              child: GestureDetector(
-                child: Stack(
-                  children: [
-                    const Icon(Icons.notifications, size: 34),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 16,
-                        width: 16,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffF2BC3F),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Text(
-                          '3',
-                          style: TextStyle(
-                            color: Color(0xffFCF2D8),
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                onTap: () {
-                  //TODO
-                },
+        ),
+        body: BlocBuilder<SelectedcursoBloc, SelectedcursoState>(
+          builder: (context, state) {
+            return _bodyleccion(state: state);
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _bodyleccion({required SelectedcursoState state}) {
+    return BackGrounds.burbujas(
+      child: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 40,
+              width: double.infinity,
+              child: TabBar(
+                labelColor: Colors.orange,
+                unselectedLabelColor: Colors.grey,
+                indicatorColor: Colors.orange,
+                tabs: <Widget>[
+                  Tab(
+                    text: 'Leccion',
+                  ),
+                  Tab(
+                    height: 55,
+                    text: 'Conversaciones',
+                  ),
+                ],
               ),
             ),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.menu))
-          ],
-        ),
-        body: BackGrounds.burbujas(
-          child: SafeArea(
-            child: Column(
-              children: const [
-                SizedBox(
-                  height: 55,
-                  width: double.infinity,
-                  child: TabBar(
-                    labelColor: Colors.orange,
-                    unselectedLabelColor: Colors.grey,
-                    indicatorColor: Colors.orange,
-                    tabs: <Widget>[
-                      Tab(
-                        text: 'Leccion',
-                      ),
-                      Tab(
-                        height: 55,
-                        text: 'Conversaciones',
-                      ),
-                    ],
-                  ),
+            Expanded(
+              child: TabBarView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
                 ),
-                Expanded(
-                  child: TabBarView(
-                    physics: BouncingScrollPhysics(),
-                    children: <Widget>[
-                      Conversacion(),
-                      VideosC(),
-                    ],
-                  ),
-                ),
-              ],
+                children: <Widget>[
+                  VideosC(lesson: state.lesson),
+                  Conversacion(lesson: state.lesson),
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

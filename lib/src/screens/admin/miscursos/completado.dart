@@ -24,7 +24,15 @@ class Completado extends StatelessWidget {
                   parent: AlwaysScrollableScrollPhysics()),
               itemCount: state.completado.length,
               itemBuilder: (BuildContext context, int i) {
-                return _Tarjeta(curso: state.completado[i]);
+                return GestureDetector(
+                  child: _Tarjeta(curso: state.completado[i]),
+                  onTap: () {
+                    Compositor.selectCurso(
+                      context: context,
+                      curso: state.completado[i],
+                    );
+                  },
+                );
               },
             ),
     );
